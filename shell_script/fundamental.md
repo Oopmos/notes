@@ -373,8 +373,70 @@ echo $? # ถ้าได้ 0 แสดงว่ารันผ่าน ถ้
 ```
 
 # Basic Operators
+กำหนดให้ a=10 b=20
 ## Arithmatic Operators
+
+| Operator           | Purpose    | Example                      |
+| ------------------ | ---------- | ---------------------------- |
+| + (Addition)       | บวก        | 'expr $a + $b' จะได้ 30      |
+| - (Subtraction)    | ลบ         | 'expr $a - $b' จะได้ -10     |
+| * (Multiplication) | คูณ        | 'expr $a * $b' จะได้ 200     |
+| / (Division)       | หาร        | 'expr $b / $a' จะได้ 2       |
+| % (Modulus)        | หารหาเศษ   | 'expr $b % $a' จะได้ 0       |
+| = (Assignment)     | ใส่ค่า     | a = $b จะใส่ค่า b ลงตัวแปร a |
+| == (Eqality)       | เท่ากับ    | [$a == $b] จะได้ false       |
+| != (Not Equality)  | ไม่เท่ากับ | [$a != $b] จะได้ ture                             |
+
 ## Relational Operators
+
+| Operator | Purpose                                       | Example           |
+| -------- | --------------------------------------------- | ----------------- |
+| -eq      | เช็คว่าค่าเท่ากันไหม                          | [$a -eq $b] ไม่จริง |
+| -ne      | เช็คว่า่ไม่เท่ากันใช่ไหม                      | [$a -ne $b] จริง    |
+| -gt      | เช็คว่าค่าตัวซ้ายมากกว่าตัวขวาไหม             | [$a -gt $b] ไม่จริง |
+| -lt      | เช็คว่าค่าตัวซ้ายน้อยกว่าตัวขวาไหม            | [$a -lt $b] จริง    |
+| -ge      | เช็คว่าค่าตัวซ้ายมากกว่าหรือเท่ากับตัวขวาไหม  | [$a -ge $b] ไม่จริง |
+| -le      | เช็คว่าค่าตัวซ้ายน้อยกว่าตัวขวาหรือเท่ากับไหม | [$a -lt $b] จริง    |
+
+
 ## Boolean Operators
+
+| Operator | Purpose                          | Example                           |
+| -------- | -------------------------------- | --------------------------------- |
+| !        | สลับ true เป็น false หรือกลับกัน | [! false] จะได้ true              |
+| -o       | หรือ (OR)                        | [$a -lt 20 -o $b -gt 100] จริง    |
+| -a       | และ (AND)                        | [$a -lt 20 -o $b -gt 100] ไม่จริง | 
+
 ## String Operators
+
+| Operator | Purpose                      | Example         |
+| -------- | ---------------------------- | --------------- |
+| -z       | string size เป็น 0 ใช่ไหม    | [-z $a] ไม่จริง |
+| -n       | string size มากกว่า 0 ใช่ไหม | [-n $a] จริง    |
+| str      | มีตัวอักษรไหม                | [$a] จริง       |
+
 ## File Test Operators
+
+| Operator | Purpose                                                                      |
+| -------- | ---------------------------------------------------------------------------- |
+| -b file  | Checks if file is a block special file                                       |
+| -c file  | Checks if file is a character special file                                   |
+| -d file  | Checks if file is a directory                                                |
+| -f file  | Checks if file is an ordinary file as opposed to a directory or special file |
+| -g file  | Checks if file has its set group ID (SGID) bit set                           |
+| -k file  | Checks if file has its sticky bit set                                        |
+| -p file  | Checks if file is a named pipe                                               |
+| -t file  | Checks if file descriptor is open and associated with a terminal             |
+| -u file  | Checks if file has its Set User ID (SUID) bit set                            |
+| -r file  | Checks if file is readable                                                   |
+| -w file  | Checks if file is writable                                                   |
+| -x file  | Checks if file is executable                                                 |
+| -s file  | Checks if file has size greater than 0                                       |
+| =e file  | Checks if file exists                                                        | 
+
+# Shell Loops
+## The While Loop
+## The For Loop
+## The Until Loop
+## Nested Loop
+## Loop Control

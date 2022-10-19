@@ -601,7 +601,83 @@ done
 
 # Shell Function
 ## Creating Functions
+มีโครงสร้างพื้นฐานดังต่อไปนี้
+
+```bash
+function name() {
+	list of commands
+}
+```
+
+ตัวอย่าง
+
+```bash
+#!/bin/sh
+
+#Define function
+Hello(){
+	echo "Hello learner"
+}
+
+# Invoke Function
+Hello
+```
+
 ## Passing Parameters to Functions
+
+```bash
+#!/bin/sh
+
+#Define function
+Hello(){
+	echo "Hello $1 $2"
+}
+
+# Invoke Function
+Hello Punyapat Sompoo
+```
+
 ## Returning Values from Functions
+
+```bash
+#!/bin/sh
+
+#Define function
+Hello(){
+	echo "Hello $1 $2"
+	return 10
+}
+
+# Invoke Function
+Hello Punyapat Sompoo
+
+# Capture value returned previously
+ret=$?
+echo "Return value is $ret"
+```
+
+function ที่สามารถเรียกตัวเองได้คือ "recursive function"
+
 ## Nested Functions
+
+```bash
+#!/bin/sh
+
+# Define function
+number_one(){
+	echo "Alpha online...Over"
+	number_two
+}
+
+number_two(){
+	echo "Beta online..Over"
+}
+
+number_one
+```
+
 ## Function Call from Prompt
+สามารถบันทึก shell script เหล่านี้ไว้เพื่อเรียกใช้งานผ่าน command promt ได้
+
+
+

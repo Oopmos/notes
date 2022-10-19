@@ -17,7 +17,7 @@ Kernel Applications : MAC OS
 เป็น Text-base inteface ที่ใช้โต้ตอบกับ software และใช้ operating system ด้วยการพิมพ์คำสั่งไปที่หน้าจอ และได้รับผลลัพธ์มาท่งหน้าจอเช่นกัน
 
 มีประโยชน์หลายด้าน เช่น
-- Scale up (ขยาย infrastructure ทั้ง compute, storage หรือ Network ให้ขึ้น เพื่อรองรับผู้คนที่เข้ามาใช้งานได้มากขึ้น)
+- Scale up (ขยาย infrastructure ทั้ง compute, storage หรือ Network ให้ขึ้น เพื่อรองรับผู้คนที่เข้ามาใช้งานได้มากขึ้น) -> [ว่ากันด้วยเรื่อง Scaling, Scale Up — Scale Out](https://iamgique.medium.com/%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%99%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87-scaling-scale-up-scale-out-d0d960d42ff9)
 - Control (สร้าง script หรือทำ automation)
 - Use less memory
 

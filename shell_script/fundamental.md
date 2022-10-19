@@ -682,3 +682,6 @@ number_one
 
 
 
+
+# More to Learn
+- [Shell Scripting Tutorial | Shell Scripting Crash Course | Linux Certification Training | Edureka](https://www.youtube.com/watch?v=GtovwKDemnI)

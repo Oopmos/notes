@@ -249,5 +249,132 @@ echo "Hello. $PERSON" #เรียกตัวแปรเริ่มด้ว
 ```
 
 # Using Variable
+## Variable
+คือ string ที่เราใส่ค่าเข้าไป โดยค่าที่ใส่เข้าไปสามารถเป็นตัวเลข, ตัวอักษร และประเภทของข้อมูลอื่น ๆ
 
+## Variable Types
+### Local Variable
+เป็นตัวแปรที่ใช้ได้แค่ใน shell script นี้ หากไปสร้าง shell script ใหม่จะไม่สามารถใช้งานได้ ตัวแปรถูกเซ็ทที่ command promt
 
+### Environmental Variable
+เป็นตัวแปรที่ต้องใช้เพื่อ shell script ทำงานได้อย่างถูกต้อง
+
+### Shell Variable
+หรือ Global Variable เป็นตัวแปรพิเศษถูกสร้างขึ้นที่ shell และต้องใช้เพื่อที่จะให้โปรแกรมทำงานได้อย่างถูกต้อง ในบางครั้งตัวแปรเหล่านี้สามารถเป็นได้ทั้ง Environmental Variable หรือ Local Variable ก็ได้
+
+## Using Variable
+### Defining Variables
+
+```shell
+#! /bin/sh
+
+# variable_name=variable_value ห้ามเคาะเว้นตรงหน้า-หลัง = เด็ดขาด
+
+NAME="Punyapat Sompoo" # เป็น Scalar Variable (ตัวแปรที่เก็บค่าได้ทีละค่า)
+```
+
+Read only variable คือไม่สามารถเปลี่ยนค่าได้แล้ว เช่น
+
+```bash
+#! /bin/sh
+
+NAME="Punyapat Sompoo"
+read only NAME
+NAME="WIN" # เวลา run จะขึ้น error
+```
+
+Unsetting Variable (Delete Variable)
+
+```bash
+#! /bin/sh
+
+NAME="Punyapat Sompoo"
+unset NAME
+echo $NAME # เวลารันจะไม่ขึ้นอะไรเลย
+```
+
+### Special Variables
+
+```bash
+#! /bin/sh
+
+echo "File name: $0"
+echo "First Parameter: $1"
+echo "Second Parameter: $2"
+echo "Quoted Value: $**"
+echo "Quoted Value: $@"
+echo "No. of Parameter: $#"
+```
+
+```
+# input
+Punyapat Sompoo
+
+# output
+File name: ./variable.sh
+First Parameter: Punyapat
+Second Parameter: Sompoo
+Quoted Value: Punyapat Sompoo
+Quoted Value: Punyapat Sompoo
+No. of Parameter: 2
+
+# แต่ถ้าใส่ "" ครอบ
+"Punyapat Sompoo"
+
+# output
+File name: ./variable.sh
+First Parameter: Punyapat Sompoo
+Second Parameter:
+Quoted Value: Punyapat Sompoo
+Quoted Value: Punyapat Sompoo
+No. of Parameter: 1
+
+# ใส่ "" แยกกัน
+"Punyapat" "Sompoo"
+File name: ./variable.sh
+First Parameter: Punyapat 
+Second Parameter: Sompoo
+Quoted Value: Punyapat Sompoo
+Quoted Value: Punyapat Sompoo
+No. of Parameter: 2
+```
+
+### Command Line Arguments
+
+```bash
+#! /bin/sh
+
+for TOKEN in $*
+do
+	echo $TOKEN
+done
+```
+
+### Special Parameters
+
+```bash
+# input
+./variable.sh Punyapat wishes you have a good time
+
+# output
+Punyapat
+wishes
+you
+have
+a
+good
+time
+```
+
+### Exit Status
+
+```bash
+echo $? # ถ้าได้ 0 แสดงว่ารันผ่าน ถ้าไม่เป็น 1
+```
+
+# Basic Operators
+## Arithmatic Operators
+## Relational Operators
+## Boolean Operators
+## String Operators
+## File Test Operators

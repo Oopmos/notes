@@ -13,6 +13,27 @@
 
 Kernel Applications : MAC OS
 
+## Command Line Interface (CLI)
+เป็น Text-base inteface ที่ใช้โต้ตอบกับ software และใช้ operating system ด้วยการพิมพ์คำสั่งไปที่หน้าจอ และได้รับผลลัพธ์มาท่งหน้าจอเช่นกัน
+
+มีประโยชน์หลายด้าน เช่น
+- Scale up (ขยาย infrastructure ทั้ง compute, storage หรือ Network ให้ขึ้น เพื่อรองรับผู้คนที่เข้ามาใช้งานได้มากขึ้น)
+- Control (สร้าง script หรือทำ automation)
+- Use less memory
+
+### Command Line Interface (CLI) VS Graohical User Interface (GUI)
+CLI
+- Text-based interface มีแต่ตัวอักษร
+- ใช้งานยาก
+- ระบบเร็วกว่า
+- ควบคุมได้มากกว่า
+
+GUI
+- Visual-based interface มีรูปภาพช่วยให้เข้าใจง่าย เช่น icon, menu
+- ใช้งานง่าย
+- ระบบช้ากว่า เพราะทุกอย่างที่ลบไม่ได้ลบโดยถาวร
+- ควบคุมได้น้อยกว่า
+
 # Command Line Essentials
 ถ้าเป็นสิ่งที่แสดงออกทางหน้าจอจะให้ขึ้นต้นด้วย >
 clear หน้าจอโดยการพิมพ์ clear หรือกด crtl + L
@@ -163,12 +184,70 @@ mkdir -p new_folder/in/folder
 เปลี่ยน permission ของไฟล์
 
 ```bash
+chmod ugo [FILENAME] # u = user, g = user group, o = other user
+
 chmod +r test.sh # read
 
 chmod +w test.sh # write
 
 chmod +x test.sh # excute
 
-chmod 777 test.sh # read + write + excute
+chmod 777 test.sh # ให้ทุกคนมีทุกมีสิทธิ์ read + write + excute
 ```
-## man + help
+
+ตัวเลขที่ใช้เป็นเลขฐาน 8 ใช้ในการระบุสิทธิ์
+|  number   | permission |
+|:---------:|:----------:|
+|     0     |  nothing   |
+|     1     |  execute   |
+|     2     |   write    |
+|  3 (2+1)  |    w+x     |
+|     4     |    read    |
+|  5 (4+1)  |    r+x     |
+|  6 (4+2)  |    r+w     |
+| 7 (4+2+1) | r+w+x           |
+
+### man + help
+เปิด Manual ขึ้นมา
+กด H เพื่อดูสรุป
+กด Q เพื่อออก
+
+
+# Shell Script Basic
+## Shell
+คือโปรแกรมสำหรับแปลคำสั่งที่แปลคำสั่งที่ถูกป้อนโดยผู้ใช้แปลงเป็นภาษาที่ Kernel เข้าใจ
+
+## Shell Script
+คอนเซ็ปต์โดยทั่วไปแล้วมันคือลิสต์ของคำสั่ง โดยจะถูกเรียงตามลำดับการเรียกใช้งาน Shell Script ที่ดีควรมีการคอมเมนต์เพื่ออธิบายเพิ่มเพื่อให้คนมาอ่านเข้าใจ คอมเมนต์ได้ง่ายด้วยการ # comment
+
+## Type of shell
+แบ่งได้เป็น 2 ประเภทหลัก ๆ ได้แก่
+1. Bourne Shell Types
+- Bourne Shell (.sh)
+- Korn Shell
+- Bourne-Again Shell
+- PDSIX Shell
+
+2. C Shell Types
+- C Shell
+- TENEX/TOPS C Shell
+- Z Shell
+
+## How it works
+เริ่มด้วยการสร้างไฟล์ด้วย nano editor
+
+```bash
+#เริ่มด้วย shebang line (#!) ตามด้วย full path ไปที่ interpreter
+#! /bin/sh
+
+#Author : P
+#Script is as follows
+
+echo "What is your Name?" 
+read PERSON #เก็บ user input ไว้ในตัวแปร PERSON
+echo "Hello. $PERSON" #เรียกตัวแปรเริ่มด้วย $
+```
+
+# Using Variable
+
+

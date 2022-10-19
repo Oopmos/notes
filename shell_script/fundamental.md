@@ -266,7 +266,7 @@ echo "Hello. $PERSON" #เรียกตัวแปรเริ่มด้ว
 ### Defining Variables
 
 ```shell
-#! /bin/sh
+#!/bin/sh
 
 # variable_name=variable_value ห้ามเคาะเว้นตรงหน้า-หลัง = เด็ดขาด
 
@@ -276,7 +276,7 @@ NAME="Punyapat Sompoo" # เป็น Scalar Variable (ตัวแปรที�
 Read only variable คือไม่สามารถเปลี่ยนค่าได้แล้ว เช่น
 
 ```bash
-#! /bin/sh
+#!/bin/sh
 
 NAME="Punyapat Sompoo"
 read only NAME
@@ -286,7 +286,7 @@ NAME="WIN" # เวลา run จะขึ้น error
 Unsetting Variable (Delete Variable)
 
 ```bash
-#! /bin/sh
+#!/bin/sh
 
 NAME="Punyapat Sompoo"
 unset NAME
@@ -296,7 +296,7 @@ echo $NAME # เวลารันจะไม่ขึ้นอะไรเล�
 ### Special Variables
 
 ```bash
-#! /bin/sh
+#!/bin/sh
 
 echo "File name: $0"
 echo "First Parameter: $1"
@@ -342,7 +342,7 @@ No. of Parameter: 2
 ### Command Line Arguments
 
 ```bash
-#! /bin/sh
+#!/bin/sh
 
 for TOKEN in $*
 do
@@ -434,9 +434,174 @@ echo $? # ถ้าได้ 0 แสดงว่ารันผ่าน ถ้
 | -s file  | Checks if file has size greater than 0                                       |
 | =e file  | Checks if file exists                                                        | 
 
+
 # Shell Loops
 ## The While Loop
+ทำจนกว่าเงื่อนไขจะผิด
+มีโครงสร้างพิ้นฐานดังต่อไปนี้
+
+```bash
+while command
+do
+	statement
+done
+```
+
+ตัวอย่าง
+
+```bash
+#!/bin/sh
+
+a=0
+
+while [ $a -lt 10 ] # ถ้า a<10 จะทำจนกว่า a จะมากกว่า 10
+do
+	echo $a
+	a='expr $a + 1'
+done
+```
+
+
 ## The For Loop
+มีโครงสร้างพื้นฐานดังต่อไปนี้
+
+```bash
+for var in w1 w2 w3...wN
+do
+	statement
+done
+```
+
+ตัวอย่าง
+```bash
+#!/bin/sh
+
+for var in 0 1 2 3 4 5 6 7 8 9 # แสดง 1-9
+do
+	echo $var
+done
+```
+
 ## The Until Loop
+ทำจนกว่าเงื่อนไขจะเป็นจริง
+มีโครงสร้างพิ้นฐานดังต่อไปนี้
+
+```bash
+until command
+do
+	statement
+done
+```
+
+ตัวอย่าง
+
+```bash
+#!/bin/sh
+
+a=0
+
+until [! $a -lt 10 ] # ทำจนกว่า a จะไม่น้อยกว่า 10
+do
+	echo $a
+	a='expr $a + 1'
+done
+
+```
+
 ## Nested Loop
+คือลูปที่ซ้อนกัน
+ตัวอย่าง
+
+```bash
+#!/bin/sh
+
+a=0
+
+while [ "$a" -lt 10 ] # loop 1
+do
+	b="$a"
+	
+	while [ "$b" -ge 0 ] # loop 2
+	do
+		echo -n "$b " # แสดงโดยไม่เว้นบรรทัด
+		b='expr $b - 1'
+	done
+
+	echo # เว้นบรรทัด
+	a='expr $a + 1'
+done
+
+# output
+0
+1 0
+2 1 0
+3 2 1 0
+4 3 2 1 0
+5 4 3 2 1 0
+6 5 4 3 2 1 0
+7 6 5 4 3 2 1 0
+8 7 6 5 4 3 2 1 0
+9 8 7 6 5 4 3 2 1 0
+```
+
+
 ## Loop Control
+ก่อนที่จะรู้จักร Loop control มาทำความรู้จักรกับ infinite loop ก่อน
+
+Infinite Loop คือ loop ที่ทำงานไปเรื่อย ๆ ไม่รู้จบ
+
+```bash
+#1/bin/sh
+
+a=10
+until [ $a -gt 0 ]
+do
+	echo $a
+	a='expr $a + 1'
+done
+```
+
+กด crtl+c เพื่อหยุดการทำงานของ loop ทั้งหมด
+หรือใช้ break statement เช่น
+
+```bash
+#!/bin/sh
+
+a=0
+
+while [ $a -lt 10 ]
+do
+	echo $a
+	if [ $a -eq 5 ]
+	then
+		break # หยุดลูปต่อเมื่อ a=5
+	fi
+	a='axpr $a + 1'
+done
+```
+
+continue statement หยุดการทำงานของ iteration นั้น แต่ยังทำงานในลูปต่อ
+
+```bash
+#!/bin/sh
+
+NUMS="1 2 3 4 5 6 7"
+
+for NUM in $NUMS
+do
+	Q='expr $NUM % 2'
+	if [ $Q -eq 0 ]
+	then
+		echo "Number is an even number!!"
+		continue # ถ้าเป็นเลขคู่จะออกจาก iteration ที่ NUM = เลขคู่ แล้วทำต่อ
+	fi
+	echo "Found odd number"
+done	
+```
+
+# Shell Function
+## Creating Functions
+## Passing Parameters to Functions
+## Returning Values from Functions
+## Nested Functions
+## Function Call from Prompt

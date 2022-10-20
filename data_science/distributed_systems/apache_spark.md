@@ -66,6 +66,7 @@
 - [A Complete Guide to RDD in Apache Spark](https://www.xenonstack.com/blog/rdd-in-spark/)
 - [Apache Spark คืออะไร เครื่องมือ Big Data ที่ไม่รู้จักไม่ได้](https://blog.datath.com/apache-spark-big-data/)
 - [Introduction to Apache Spark: A Unified Analytics Engine](https://www.oreilly.com/library/view/learning-spark-2nd/9781492050032/ch01.html)
+- [PySpark Tutorial](https://www.youtube.com/watch?v=_C8kWso4ne4)
 
 
 

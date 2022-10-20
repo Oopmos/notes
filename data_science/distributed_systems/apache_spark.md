@@ -1,7 +1,7 @@
 # Apache Spark
 เป็นเครื่องมือหนึ่งที่ถูกดีไซน์มาให้เราใช้งานแบบทำงานกลุ่มได้ โดยที่เชื่อมต่อระบบการทำงานของคอมพิวเตอร์เข้าด้วยกัน หรือเรียกว่า Cluster computing platform ซึ่งสามารถกระจายงานที่ต้องทำไปยังเครื่องอื่นๆภายในระบบ ทำให้เราสามารถประมวลผลข้อมูลขนาดใหญ่แบบเต็มประสิทธิภาพ หรือแบบ real-time ไปพร้อม ๆ กันได้ ตัวชูโรงของ Spark คือการใช้คอนเซ็ปต์ RDD
 
-![500](../../_assets/data_engineer/distributed_systems/apache_spark_logo.png)
+![500](../../_assets/data_engineer/distributed_systems/apache_spark/apache_spark_logo.png)
 
 ## Resilient Distributed Datasets (RDD)
 คือโครงสร้างข้อมูลพื้นฐานของ Spark เป็นชุดข้อมูลไม่สามารถเขียนทับได้ (immutable) ทนต่อการล่มได้เพราะจะเก็บประวัติการเปลี่ยนแปลงของข้อมูลไว้ในหลายโหนด หากมีโหนดไหนเสียไปก็สามารถเรียกจากอีกโหนดได้
@@ -38,7 +38,7 @@
 ## Unified Stack of Apache Spark
 โครงสร้าง Spark ประกอบไปด้วยหลายส่วนด้วยกัน คล้ายๆกับการใช้ libraries ในซอร์ฟแวร์อื่นๆ เพื่อรองรับกับงานที่หลากหลายได้ กรอบไปด้วย
 
-![](../../_assets/data_engineer/distributed_systems/unified_stack_of_apache_spark.png)
+![](../../_assets/data_engineer/distributed_systems/apache_spark/unified_stack_of_apache_spark.png)
 
 ### Spark Core
 มีฟังชั่นเบื่องต้นสำหรับกำหนดงาน จัดการหน่วยความจำ fault recovery การจัดการ storage system และอื่น ๆ อีก เช่น การเรียก API เฉพาะตัวที่เรียกว่า RDDs ซึ่งเป็นสิ่งที่ช่วยในการรันโปรแกรมในหลายๆเครื่อง พร้อมๆกันแบบคู่ขนาน

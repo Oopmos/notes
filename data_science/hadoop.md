@@ -14,11 +14,34 @@ Hadoop ประกอบไปด้วย 4 ส่วนหลัก (componen
 ![900](../_assets/data_science/hadoop/hadoop_core.png)
 
 ## MapReduce
-คือวิธีการประมวลผลข้อมูลที่ถูกสร้างขึ้นด้วยภาษา Java โดยมีงานหลัก ๆ  ดังนี้
-- **Map** รับข้อมูล ประมวลผล และสร้าง key-value pair (tuple) จำนวนงาน (task) ของ Map ขึ้นอยู่กับขนาด และชนิดของข้อมูลที่รับเข้ามา
-- **Reduce** รับ key-value pair จากการทำ Map หลังจากนั้นจะ shuffles, sorts, aggregates จนกลายเป็นเซ็ทที่เล็กลงของ tuple ไปเก็บไว้ใน HDFS
+คือวิธีการประมวลผลข้อมูลที่กระจายตัวอยู่บน Hadoop cluster เมื่อกระบวนการ MapReduce เริ่ม Resource Manager จะบอก Application Master ให้ดูแล และติดตามการทำงานของ MapReduce
 
-![](../_assets/data_science/hadoop/mapreduce.png)
+Application Master จะหาบล็อกข้อมูลที่ต้องการตามข้อมูลที่มีใน Name Node หลังจากนั้น Application Master จะบอก Resource Manager ให้เริ่มกระบวกการ MapReduce บน node ที่มีบล็อกข้อมูลอยู่ การประมวลผลจะเกิดบน slave node เพื่อลดการใช้ bandwidth และเพิ่มประสิทธิภาพการทำงานของ cluster
+
+ข้อมูลที่รับมาจะถูก map, shuffle และ reduce ผลลัพธ์ที่ได้จาก MapReduce จะถูกเก็บ และทำซ้ำไว้ใน HDFS
+
+![700](../_assets/data_science/hadoop/mapper-reducer-mapreduce-job-flow.png)
+
+Hadoop server ที่ทำหน้าที่ในการ map และ reduce จะถูกเรียกว่า Mapper และ Reducer ตามลำดับ
+
+Resource Manager จะเป็นส่วนที่ตัดสินใจว่าจะใช้ mapper เท่าไหร โดยขึ้นกับขนาดของข้อมูล และบล็อกหน่วยความจำที่มีบน mapper server
+
+### Map Phase
+กระบวนการ map จะใส่สูตรทางตรรกะของบล็อกข้อมูลใน HDFS โดยสูตรเหล่านี้สามารถใช้งานบนบล็อกข้อมูลหลาย ๆ บล็อกพร้อมกันได้ เราเรียกสูตรเหล่านี้ว่า Input Split มันคือการ map ข้อมูลให้กลายเป็น key-value pair
+
+หลังจากนั้นจะ map อีกครั้ง โดยทำทุก key-value pair และสร้างเป็นเซ็ทของ key-value ใหม่ที่มีขนาดเล็กลง
+
+![700](../_assets/data_science/hadoop/mapreduce-map-phase-shuffle-sort-input-split-1.png)
+
+### Shuffle and Sort Phase
+การ shuffle คือนำ key-value pair ไปสับเปลี่ยน โดยจัดกลุ่มด้วย key และค่าของมัน โดย Reduce Phase จะเริ่มเมื่อสามารถจัดกลุ่มจนกลายเป็นไฟล์เดียว
+
+กระบวนการ shuffle และการเรียงข้อมูลจะทำงานไปพร้อมกัน แม้ว่าผลลัพธ์จากการ map จะได้จาก mapper node แต่การจัดกลุ่ม และเรียงจะถูกทำบน reducer node
+
+### Reducer Phase
+กระบวนการ reduce จะทำการรวมไฟล์ให้สอดคล้องกับ mapped key ผลลัพธ์ที่ได้ออกมาจะกลายเป็น key-value pair ใหม่ และถูกนำไปจัดเก็บบน HDFS
+
+![700](../_assets/data_science/hadoop/reduce-task-sort-shuffle-hadoop.png)
 
 ## Hadoop Distributed File System (HDFS)
 เป็นส่วนหลักในการจัดเก็บข้อมูลที่อยู่บน server หลายตัว ข้อมูลจะถูกแบ่งออกเป็นบล็อก ๆ ตามขนาดของข้อมูล แต่ละบล็อกข้อมูลจะมีขนาดไม่เกิน 128 MB ถูกทำซ้ำอีก 3 ครั้ง และจัดเก็บท่ามกลาง node และ rack ที่เรามีทั้งหมด

@@ -124,13 +124,36 @@ Resource Manager สามารถสั่ง Name Node ให้หยุด 
 
 
 # Hadoop Ecosystem
-ในนี้จะเป็นแค่การอธิบายคร่าว ๆ ว่า tool และ service แต่ละตัวคืออะไร
+ในนี้จะเป็นแค่การอธิบายคร่าว ๆ ว่า tool และ service แต่ละตัวคืออะไร แบ่งตามลักษณะการใช้งาน
 
 ![700](../../../_assets/data_science/big_data_platform/on-premise/hadoop/hadoop_ecosystem.png)
 
 ## Distributed Programming
 ### Apache Pig
+
+![500](../../../_assets/data_science/big_data_platform/on-premise/hadoop/apache_pig.png)
+
+เป็นเครื่องมือที่เน้นในการทำ Data flow โดยใช้ภาษา Pig Latin (ลักษณะคล้าย SQL) สามารถใช้ฟังก์ชันพื้นฐานอย่าง join, sort, filter และยังสามารถเขียนฟังก์ชันในการประมวลผล และเขียนข้อมูลเองได้ โดยข้อมูลที่ทำสามารถเลือกได้ว่าจะโชว์ผลลัพธ์ออกมาทางจอ หรือว่าเก็บลง HDFS แต่ก็มีข้อจำกัดหลายข้อได้แก่
+1. อาศัยการทำงานร่วมกับ HDFS และ MapReduce
+2. ภาษา Pig Latin ไม่สามารถเขียน If statement และ for loop ได้
+3. ทำงานเหมือน MapReduce โดย Complier จะแปลงจาก Pig Latin เป็น MapReduce ซึ่งเราไม่สามารถดูได้ว่าแปลงแล้วได้หน้าตาโค้ดเป็นยังไง (Black box)
+เหมาะสำหรับการทำ ETL (Extract Transform Load) ประมวลผล และวิเคราะห์ข้อมูลขนาดใหญ่
+
 ### Apache Spark
+
+![500](../../../_assets/data_science/big_data_platform/on-premise/hadoop/apache_spark.png)
+
+เป็นเครื่องมือในการประมวลผล Big data ซึ่งทำหน้าที่คล้ายกับ MapReduce สามารถใช้แทนกันได้ และมีข้อดีข้อเสียแตกต่างกันดังนี้
+
+| Term                 | Apache Spark                                                               | Hadoop MapReduce                                       |
+| -------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------ |
+| ความง่ายต่อการใช้งาน | มี API สำหรับ Scala, Java, and Python and Spark SQL for SQL                | ต้องทำด้วยภาษา Java เท่านั้น                           |
+| การประมวลผลข้อมูล    | ทำได้ทั้ง batch, real time รวมถึงทำกราฟได้ด้วย                             | ทำได้แค่แบบ batch                                      |
+| ความเร็ว             | เร็วกว่า 100 เท่าถ้าทำในหน่วยความจำ และเร็วกว่า 10 เท่าเมื่อทำเขียนลงดิสก์ | เร็วกว่าการทำแบบปกติ                                   |
+| เมื่อทำไม่ผ่าน       | ทำใหม่ตั้งแต่แรกเมื่อรีสตาร์ท                                              | ทำใหม่ต่อจากที่หยุดไปเมื่อรึสตาร์ท                     |
+| ความปลอดภัย          | ปลอดภัยน้อยกว่า เพราะการตั้งค่าเริ่มต้นคือไม่เปิดระบบความปลอดภัย           | ปลอดภัยกว่า เพราะเปิดระบบความปลอดภัยของ Hadoop ทั้งหมด |
+| ค่าใช้จ่าย           | แพงกว่า เพราะประมวลผลบน RAM ซึ่งมีราคาสูง                                  | ถูกว่า เพราะไม่ได้ทำงานบน RAM                          |
+| การจัดเวลา           | จัดด้วยตัวเองทั้งหมด                                                       | ต้องตั้งด้วย Apache Oozie                                                       |
 
 ## NoSQL Databases
 ### Column Data Model
@@ -139,12 +162,23 @@ Resource Manager สามารถสั่ง Name Node ให้หยุด 
 
 ## SQL-On-Hadoop
 ### Apache Hive
-### Cloudera Impala
+
 
 ## Data Ingestion
 ### Apache Flume
+
+![300](../../../_assets/data_science/big_data_platform/on-premise/hadoop/apache_flume.png)
+
+เป็นเครื่องมือในการดึงข้อมูลแบบ unstructured และ semi-structured data ที่เป็นแบบ Realtime เช่น network traffic, social media, email messages, log files และอื่น ๆ เข้าสู่ HDFS
+
 ### Apache Sqoop
+
+![500](../../../_assets/data_science/big_data_platform/on-premise/hadoop/apache_sqoop.png)
+
+เป็นเครื่องมือในการถ่ายโอนข้อมูลระหว่างฐานข้อมูลที่เป็น structured data บน RDBMS หรือ Data Warehouse อย่าง SQL server, Oracle หรือ MySQL กับข้อมูลบน HDFS ของ Hadoop
+
 ### Apache Kafka
+
 
 ## Service Programming
 ### Apache Zookeeper
@@ -156,3 +190,5 @@ Resource Manager สามารถสั่ง Name Node ให้หยุด 
 - [Apache Hadoop Architecture Explained (with Diagrams)](https://phoenixnap.com/kb/apache-hadoop-architecture-explained)
 - [Hadoop – Rack and Rack Awareness](https://www.geeksforgeeks.org/hadoop-rack-and-rack-awareness/)
 - [The Hadoop Ecosystem Table](https://hadoopecosystemtable.github.io/)
+- [Hadoop Ecosystem: Hadoop Tools for Crunching Big Data](https://www.edureka.co/blog/hadoop-ecosystem)
+- [Apache Spark Vs. Hadoop MapReduce – Top 7 Differences](https://www.analyticsvidhya.com/blog/2022/06/apache-spark-vs-hadoop-mapreduce-top-7-differences/)

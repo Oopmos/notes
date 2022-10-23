@@ -1,24 +1,24 @@
 # What is Hadoop
 Hadoop คือ Open-source software framework ที่มีเครื่องมือภายใน ecosystem ที่หลากหลาย และยืดหยุ่น เพื่อตอบโจทย์การประมวลผล หรือวิเคราะห์ Big data
 
-![750](../_assets/data_science/hadoop/hadoop_logo.png)
+![750](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/hadoop_logo.png)
 
 # Hadoop Architecture
 Hadoop จะมีรูปแบบเป็น Master-Slave Architecture ซึ่งมีการวางเซิร์ฟเวอร์หลาย ๆ ตัวรวมกันเรียกว่า Hadoop Cluster โดยให้เครื่อง master คอยจัดการ และเครื่อง slave ทำ task ที่ได้รับ
 
-![600](../_assets/data_science/hadoop/hadoop_architecture.png)
+![600](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/hadoop_architecture.png)
 
 # Hadoop Core Components
 Hadoop ประกอบไปด้วย 4 ส่วนหลัก (components) ได้แก่ HDFS, YARN, MapReduce และ Common Utilities ตามรูปด้านล่าง
 
-![900](../_assets/data_science/hadoop/hadoop_core.png)
+![900](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/hadoop_core.png)
 
 ## MapReduce
 คือวิธีการประมวลผลข้อมูลที่่ทำบน Hadoop cluster โดย Application Master จะหาบล็อกข้อมูลที่ต้องการจาก metadata ที่มีใน Name Node หลังจากนั้น Application Master จะบอก Resource Manager ให้เริ่มกระบวนการ MapReduce บน node ที่มีบล็อกข้อมูลที่ต้องการอยู่ การประมวลผลจะเกิดบน slave node เพื่อลดการใช้ bandwidth และเพิ่มประสิทธิภาพการทำงานของ cluster เมื่อกระบวนการ MapReduce เริ่มแล้ว Resource Manager จะบอก Application Master ให้ดูแล และติดตามการทำงานของ MapReduce
 
 โดยข้อมูลที่รับมาจะถูก map, shuffle และ reduce ผลลัพธ์ที่ได้จาก MapReduce จะถูกเก็บ และทำซ้ำไว้ใน HDFS
 
-![700](../_assets/data_science/hadoop/mapper-reducer-mapreduce-job-flow.png)
+![700](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/mapper-reducer-mapreduce-job-flow.png)
 
 Hadoop server ที่ทำหน้าที่ในการ map และ reduce จะถูกเรียกว่า Mapper และ Reducer ตามลำดับ
 
@@ -29,7 +29,7 @@ Resource Manager จะเป็นส่วนที่ตัดสินใจ
 
 หลังจากนั้นจะ map อีกครั้ง โดยทำทุก key-value pair และสร้างเป็นเซ็ทของ key-value ใหม่ที่มีขนาดเล็กลง
 
-![700](../_assets/data_science/hadoop/mapreduce-map-phase-shuffle-sort-input-split-1.png)
+![700](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/mapreduce-map-phase-shuffle-sort-input-split-1.png)
 
 ### Shuffle and Sort Phase
 การ shuffle คือนำ key-value pair ไปสับเปลี่ยน โดยจัดกลุ่มด้วย key และตามค่าของมัน โดย Reduce Phase จะเริ่มเมื่อจัดกลุ่มจนกลายเป็นไฟล์เดียว
@@ -39,14 +39,14 @@ Resource Manager จะเป็นส่วนที่ตัดสินใจ
 ### Reducer Phase
 กระบวนการ reduce จะทำการรวมไฟล์ให้สอดคล้องกับ mapped key ผลลัพธ์ที่ได้ออกมาจะกลายเป็น key-value pair ใหม่ และถูกนำไปจัดเก็บบน HDFS
 
-![700](../_assets/data_science/hadoop/reduce-task-sort-shuffle-hadoop.png)
+![700](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/reduce-task-sort-shuffle-hadoop.png)
 
 ## Hadoop Distributed File System (HDFS)
 เป็นส่วนหลักในการจัดเก็บข้อมูลที่อยู่บน server ทั้งหมด ข้อมูลจะถูกแบ่งออกเป็นบล็อก ๆ ตามขนาดของข้อมูล แต่ละบล็อกข้อมูลจะมีขนาดไม่เกิน 128 MB ถูกทำซ้ำอีก 3 ครั้ง และจัดเก็บท่ามกลาง node และ rack ที่เรามีทั้งหมด
 
 **Data Node** ทำหน้าที่ประมวลผล และจัดเก็บบล็อกข้อมูล ส่วน **Name Node** ดูแลจัดการ Data Node เก็บบล็อก metadata และควบคุมการเข้าถึงของ client
 
-![800](../_assets/data_science/hadoop/hdfs-1.png)
+![800](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/hdfs-1.png)
 
 ### Name Node
 เป็นที่จัดเก็บที่มาของข้อมูล (metadata) ของบล็อกข้อมูลทั้งหมด เช่น ชื่อไฟล์, การเข้าถึงไฟล์, ID, ที่จัดเก็บ, จำนวนที่ทำซ้ำ จะถูกเก็บไว้ใน fsimage บนหน่วยความจำของ Name Node
@@ -70,14 +70,14 @@ Data Node จะสื่อสาร และรับคำสั่งจา
 
 กล่าวโดยสรุปคือกฏนี้บังคับให้บล็อกข้อมูลทั้งหมดจะไม่ถูกจัดเก็บใน Data Node เดียวกัน และจำกัดให้แต่ละ rack มีบล็อกข้อมูลไม่เกิน 2 บล็อก
 
-![700](../_assets/data_science/hadoop/rack-placmement-policy-hdfs.png)
+![700](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/rack-placmement-policy-hdfs.png)
 
 rack มีโอกาสพังน้อยกว่า node แต่ HDFS ทำเพื่อให้มั่นใจว่าข้อมูลเราจะพร้อมใช้งานเสมอ และเก็บบล็อกข้อมูลไว้อย่างน้อย 1 บล็อกในแต่ละ rack บน cluster เรา
 
 ## Yet Another Resource Negotiator (YARN)
 เป็นส่วนที่จัดการทรัพยากรภายใน Hadoop cluster ระหว่าง HDFS และการทำ MapReduce
 
-![700](../_assets/data_science/hadoop/yarn-daemons-hadoop-architecture.png)
+![700](../../../../_assets/data_science/big_data_platform/on-premise/hadoop/yarn-daemons-hadoop-architecture.png)
 
 ### Resource Manager
 ทำหน้าที่ควบคุมทรัพยากรที่ใช้ในการประมวลผลภายใน cluster ทั้งหมด จุดประสงค์หลักของมันคือ
@@ -120,6 +120,39 @@ Application Master จะควบคุมดูแล lifecycle ของ appl
 
 Resource Manager สามารถสั่ง Name Node ให้หยุด container ได้ ในกรณีที่ต้องการ
 
+
+
+
+# Hadoop Ecosystem
+ในนี้จะเป็นแค่การอธิบายคร่าว ๆ ว่า tool และ service แต่ละตัวคืออะไร
+
+![700](../../../_assets/data_science/big_data_platform/on-premise/hadoop/hadoop_ecosystem.png)
+
+## Distributed Programming
+### Apache Pig
+### Apache Spark
+
+## NoSQL Databases
+### Column Data Model
+#### Apache HBase
+
+
+## SQL-On-Hadoop
+### Apache Hive
+### Cloudera Impala
+
+## Data Ingestion
+### Apache Flume
+### Apache Sqoop
+### Apache Kafka
+
+## Service Programming
+### Apache Zookeeper
+
+## Scheduling & DR
+### Apache Oozie
+
 # Reference
 - [Apache Hadoop Architecture Explained (with Diagrams)](https://phoenixnap.com/kb/apache-hadoop-architecture-explained)
 - [Hadoop – Rack and Rack Awareness](https://www.geeksforgeeks.org/hadoop-rack-and-rack-awareness/)
+- [The Hadoop Ecosystem Table](https://hadoopecosystemtable.github.io/)

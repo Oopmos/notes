@@ -155,14 +155,14 @@ Resource Manager สามารถสั่ง Name Node ให้หยุด 
 | ค่าใช้จ่าย           | แพงกว่า เพราะประมวลผลบน RAM ซึ่งมีราคาสูง                                  | ถูกว่า เพราะไม่ได้ทำงานบน RAM                          |
 | การจัดเวลา           | จัดด้วยตัวเองทั้งหมด                                                       | ต้องตั้งด้วย Apache Oozie                                                       |
 
-## NoSQL Databases
-### Column Data Model
-#### Apache HBase
-
-
 ## SQL-On-Hadoop
 ### Apache Hive
 
+![300](../../../_assets/data_science/big_data_platform/on-premise/hadoop/apache_hive.png)
+
+เป็น Data Warehousing service ที่ทำงานอยู่บน HDFS สามารถอ่าน เขียน และดูแลข้อมูลได้โดยใช้ภาษา HQL (Hive + SQL) ประกอบไปด้วย 2 ส่วนหลัก
+- **Hive Command Line** เป็นหน้าต่างที่ใช้รันคำสั่ง HQL
+- Java Database Connectivity (**JDBC**) / Object Database Connectivity (**ODBC**) เป็น Driver ในการเชื่อมต่อ และดึงข้อมูลจาก data storage JDBC และ ODBC มีข้อแตกต่างกันคือ JDBC ใช้ได้แค่กับ Java ในขณะที่ ODBC ใช้ได้หลายภาษา
 
 ## Data Ingestion
 ### Apache Flume
@@ -177,14 +177,19 @@ Resource Manager สามารถสั่ง Name Node ให้หยุด 
 
 เป็นเครื่องมือในการถ่ายโอนข้อมูลระหว่างฐานข้อมูลที่เป็น structured data บน RDBMS หรือ Data Warehouse อย่าง SQL server, Oracle หรือ MySQL กับข้อมูลบน HDFS ของ Hadoop
 
-### Apache Kafka
-
-
 ## Service Programming
 ### Apache Zookeeper
 
+![500](../../../_assets/data_science/big_data_platform/on-premise/hadoop/apache_zookeeper.png)
+
+ทำหน้าที่เป็น Coordinator สำหรับ Hadoop Job รวมถึง Service ต่าง ๆ บน Hadoop ecosystem ซึ่งมีหน้าที่หลัก ๆ คือ **synchronization (ทำให้ทำงานพร้อมกัน), configuration maintenance (เช่น Fault-Recovery), จัดกลุ่ม และ ตั้งชื่อ.**  แม้ว่าจะดูว่าจะไม่ได้ซับซ้อนอะไรเลย แต่สิ่งเหล่านี้ก็ก่อให้เกิดมากมายเช่นกัน
+
 ## Scheduling & DR
 ### Apache Oozie
+
+![500](../../../_assets/data_science/big_data_platform/on-premise/hadoop/apache_oozie.png)
+
+เป็นเครื่องมือในการทำ Workflow Scheduler/Orchestrator ที่ช่วยให้เราเอาคำสั่งประมวลผลต่าง ๆ ทั้งในรูปแบบ Job แลพ Script ในระบบ Hadoop เช่น MapReduce, Hive, Spark และอื่น ๆ มาเรียงต่อกันให้ทำงานสอดคล้องกันได้
 
 # Reference
 - [Apache Hadoop Architecture Explained (with Diagrams)](https://phoenixnap.com/kb/apache-hadoop-architecture-explained)

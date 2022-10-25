@@ -6,7 +6,7 @@ Consider $P_1(a,b)$ and $P_2(c,d)$ to be two points on a 2D plane.
 - $c$ happens to equal the maximum value in Northern Latitude (LAT_N in STATION).
 - $d$ happens to equal the maximum value in Western Longitude (LONG_W in STATION).
 
-Query the **Manhattan Distance** between points $P_1$ and $P_2$ and round it to a scale of  decimal places.
+Query the **Manhattan Distance** between points $P_1$ and $P_2$ and round it to a scale of $4$ decimal places.
 
 ### Manhattan Distance
 The distance between two points measured along axes at right angles. In a plane with $P_1$ at $(x_1, y_1)$ and $P_2$ at $(x_2, y_2)$, it is $|x_1 - x_2| + |y_1 - y_2|$.
